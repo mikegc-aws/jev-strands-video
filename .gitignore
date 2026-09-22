@@ -1,0 +1,26 @@
+# Secrets — never commit real keys
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+.uv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+# Kiro local tooling / skill config — not part of the demo collection
+.kiro/
