@@ -19,6 +19,7 @@ installs what it needs on the fly.
 | --- | --- |
 | [`tool_call_intervention`](demos/tool_call_intervention/) | Gate a proposed agent tool call *before it runs* using the real Strands Interventions API. Jev classifies the proposed call; a deterministic policy returns `Guide(...)` or `Proceed()`. |
 | [`completion_intervention`](demos/completion_intervention/) | Catch an agent that tries to *stop before the task is done*, at the `after_model_call` point. Jev classifies whether the goal is `COMPLETE` / `PARTIAL` / `NOT_ANSWERED`; a deterministic policy returns `Guide(...)` (retry) or `Proceed()`. |
+| [`model_switching`](demos/model_switching/) | An experiment (not a production pattern): *one* agent, *one* continuous conversation, and the Bedrock model swapped *between turns* (`small` / `medium` / `big`) to dial cost up and down. Jev picks the size with a `Choice`; ordinary Python maps it to a model and reassigns `agent.model` while `agent.messages` history persists across the swap. |
 
 _More demos will be added over time — each one lives in its own folder under
 `demos/`._
@@ -69,7 +70,10 @@ virtualenv.
     ├── tool_call_intervention/
     │   ├── README.md
     │   └── main.py
-    └── completion_intervention/
+    ├── completion_intervention/
+    │   ├── README.md
+    │   └── main.py
+    └── model_switching/
         ├── README.md
         └── main.py
 ```
