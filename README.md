@@ -17,6 +17,7 @@ installs what it needs on the fly.
 
 | Demo | What it shows |
 | --- | --- |
+| [`jev_basics`](demos/jev_basics/) | The "hello world" for Jev, as a **notebook** — **no agent, no Strands**. Walks the three question types (`Choice`, `Score`, `Noul`) one cell at a time, then combines them and lets plain Python make the decision. Start here. |
 | [`tool_call_intervention`](demos/tool_call_intervention/) | Gate a proposed agent tool call *before it runs* using the real Strands Interventions API. Jev classifies the proposed call; a deterministic policy returns `Guide(...)` or `Proceed()`. |
 | [`completion_intervention`](demos/completion_intervention/) | Catch an agent that tries to *stop before the task is done*, at the `after_model_call` point. Jev classifies whether the goal is `COMPLETE` / `PARTIAL` / `NOT_ANSWERED`; a deterministic policy returns `Guide(...)` (retry) or `Proceed()`. |
 | [`model_switching`](demos/model_switching/) | An experiment (not a production pattern): *one* agent, *one* continuous conversation, and the Bedrock model swapped *between turns* (`small` / `medium` / `big`) to dial cost up and down. Jev picks the size with a `Choice`; ordinary Python maps it to a model and reassigns `agent.model` while `agent.messages` history persists across the swap. |
@@ -30,9 +31,10 @@ _More demos will be added over time — each one lives in its own folder under
   scripts and handles dependencies.
 - An **OpenRouter API key** for Jev. Get one at
   [openrouter.ai/keys](https://openrouter.ai/keys).
-- **AWS credentials with Amazon Bedrock access** — the Strands agent uses
-  Bedrock as its default model provider. Make sure model access is enabled in
-  the Bedrock console.
+- **AWS credentials with Amazon Bedrock access** — the Strands-based demos use
+  Bedrock as their default model provider. Make sure model access is enabled in
+  the Bedrock console. (The [`jev_basics`](demos/jev_basics/) demo needs *only*
+  the OpenRouter key — no AWS access required.)
 
 ## Setup
 
@@ -67,6 +69,9 @@ virtualenv.
 ├── .env.example                    # template — copy to .env
 ├── .gitignore
 └── demos/                          # one folder per demo
+    ├── jev_basics/
+    │   ├── README.md
+    │   └── jev_basics.ipynb
     ├── tool_call_intervention/
     │   ├── README.md
     │   └── main.py
